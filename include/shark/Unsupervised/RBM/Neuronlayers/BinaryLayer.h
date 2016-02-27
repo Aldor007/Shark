@@ -139,7 +139,10 @@ public:
 			if(alpha == 0.0){//special case: normal gibbs sampling
 				for(std::size_t s = 0; s != state.size1();++s){
 					for(std::size_t i = 0; i != state.size2();++i){
-						state(s,i) = coinToss(statistics(s,i));
+						double prob = statistics(s, i);
+						if (prob >= 0 || prob <= 1) {
+							state(s,i) = coinToss(prob);
+						}
 					}
 				}
 			}
@@ -160,7 +163,10 @@ public:
 								prob = (1. - alpha) * prob;
 							}
 						}
-						state(s,i) = coinToss(prob);
+						if (prob >= 0 || prob <= 1) {
+							state(s,i) = coinToss(prob);
+						}
+						// state(s,i) = coinToss(prob);
 					}
 				}
 			}

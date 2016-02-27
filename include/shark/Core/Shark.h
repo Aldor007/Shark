@@ -96,7 +96,7 @@ struct BuildTypeTag {
 /**
  * \brief Tags whether this is a dynamic build
  */
-/* #undef SHARK_USE_DYNLIB */
+ #define SHARK_USE_DYNLIB
 struct DynamicLibraryTag{
   /**
    * \brief Whether this is a dynamic or static build of Shark
@@ -126,7 +126,7 @@ struct DynamicLibraryTag{
 /**
  * \brief Tags whether OpenMP has been enabled.
  */
-#define SHARK_USE_OPENMP
+/* #undef SHARK_USE_OPENMP */
 struct OpenMpTag {
 #ifdef _OPENMP
   static const bool VALUE = true;
